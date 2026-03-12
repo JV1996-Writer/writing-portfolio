@@ -26,50 +26,67 @@ const config = {
     locales: ['en'],
   },
 
-  presets: [
-    [
-      'classic',
-      ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/JV1996-Writer/writing-portfolio/tree/main/',
-          // ✅ No docItemComponent needed for Scalar
+presets: [
+  [
+    'classic',
+    ({
+      docs: {
+        sidebarPath: './sidebars.js',
+        editUrl: 'https://github.com/JV1996-Writer/writing-portfolio/tree/main/',
+      },
+      blog: {
+        showReadingTime: true,
+        feedOptions: {
+          type: ['rss', 'atom'],
+          xslt: true,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl: 'https://github.com/JV1996-Writer/writing-portfolio/tree/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      }),
-    ],
+        editUrl: 'https://github.com/JV1996-Writer/writing-portfolio/tree/main/',
+        onInlineTags: 'warn',
+        onInlineAuthors: 'warn',
+        onUntruncatedBlogPosts: 'warn',
+      },
+      theme: {
+        customCss: './src/css/custom.css',
+      },
+    }),
   ],
 
-  // ✅ No themes array needed for Scalar
+  // Redoc 
+  [
+    'redocusaurus',
+    {
+      specs: [
+        {
+          id: 'shopflow-redoc',
+          spec: 'static/shopflow.yaml',
+          route: '/api-reference',
+        },
+      ],
+      theme: {
+        primaryColor: '#2E86AB',
+        options: {
+          hideDownloadButton: false,
+          disableSearch: false,
+          expandResponses: '200,201',
+        },
+      },
+    },
+  ],
+],
+
 
   plugins: [
     [
       '@scalar/docusaurus',
       {
-        label: 'ShopFlow API',
         route: '/api',
+        showNavLink: false,
         configuration: {
           spec: {
             url: '/writing-portfolio/shopflow.yaml',
-            // ✅ Must include baseUrl prefix for GitHub Pages!
           },
           theme: 'deepSpace',
-          // ✅ Looks stunning for a portfolio!
           hideModels: false,
-          // ✅ Shows your Product, Order schemas
         },
       },
     ],
@@ -84,29 +101,64 @@ const config = {
       navbar: {
         title: 'JV Portfolio',
         logo: {
-          alt: 'Portfolio Logo',
+          alt: 'JV Portfolio Logo',
           src: 'img/logo.svg',
         },
+        style: 'dark',
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
-          // ✅ Points to Scalar API reference
-          {
-            to: '/api',
-            label: 'ShopFlow API',
-            position: 'left',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/JV1996-Writer/writing-portfolio',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Docs',
+        },
+        // ✅ Dropdown menu replacing the two separate links
+        {
+          type: 'dropdown',
+          label: 'API',
+          position: 'left',
+          items: [
+            {
+              label: 'ShopFlow API (Scalar)',
+              to: '/api',
+            },
+            {
+              label: 'ShopFlow API (Redoc)',
+              to: '/api-reference',
+            },
+          ],
+        },
+        {
+          to: '/blog', 
+          label: 'Blog', 
+          position: 'left'
+        },
+        {
+          href: 'mailto:jagadishv333@gmail.com',
+          label: 'Email',
+          position: 'right',
+          className: 'email-link',
+        },
+        {
+          href: 'https://www.linkedin.com/in/jagadisha-v-8b1848166',
+          label: 'LinkedIn',
+          position: 'right',
+          className: 'linkedin-link',
+        },
+        {
+          href: 'https://github.com/JV1996-Writer/writing-portfolio',
+          label: 'GitHub',
+          position: 'right',
+          className: 'github-link',
+        },
+        {
+      // ✅ Resume download — upload your PDF to static/resume.pdf
+          href: '/writing-portfolio/resume.pdf',
+          label: '⬇ Resume',
+          position: 'right',
+          className: 'resume-link',
+        },
+      ],
       },
       footer: {
         style: 'dark',
@@ -130,7 +182,6 @@ const config = {
               {
                 label: 'LinkedIn',
                 href: 'https://linkedin.com',
-                // ✅ Update with your real LinkedIn!
               },
             ],
           },

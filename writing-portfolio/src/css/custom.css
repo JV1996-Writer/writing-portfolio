@@ -1,30 +1,233 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * JV Portfolio — Custom Theme
+ * Deep black navbar + electric blue accent
  */
 
-/* You can override the default Infima variables here. */
+/* ── Brand Colors ─────────────────────────────────────── */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0369a1;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(56, 189, 248, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0369a1;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
+  --ifm-background-color: #0f172a;
+  --ifm-background-surface-color: #1e293b;
+  --docusaurus-highlighted-code-line-bg: rgba(56, 189, 248, 0.1);
+}
+
+/* ── Navbar ───────────────────────────────────────────── */
+.navbar {
+  background: #080f1e !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15) !important;
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.4) !important;
+  padding: 0 1.5rem !important;
+  height: 62px !important;
+}
+
+/* Logo text */
+.navbar__brand {
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: -0.02em;
+}
+
+.navbar__title {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800 !important;
+  font-size: 1.05rem !important;
+}
+
+/* Logo icon wrapper */
+.navbar__logo {
+  height: 32px !important;
+  width: 32px !important;
+  margin-right: 0.5rem;
+}
+
+/* Nav links */
+.navbar__link {
+  color: #94a3b8 !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  transition: color 0.2s ease !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+/* Dropdown */
+.navbar__item.dropdown .navbar__link::after {
+  border-color: #64748b transparent transparent !important;
+}
+
+.dropdown__menu {
+  background: #0f172a !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+  padding: 0.4rem !important;
+}
+
+.dropdown__link {
+  color: #94a3b8 !important;
+  border-radius: 6px !important;
+  font-size: 0.88rem !important;
+  padding: 0.5rem 0.85rem !important;
+}
+
+.dropdown__link:hover {
+  background: rgba(56, 189, 248, 0.1) !important;
+  color: #38bdf8 !important;
+}
+
+/* ── Right side navbar items ──────────────────────────── */
+
+/* LinkedIn button */
+.navbar__item.linkedin-link .navbar__link {
+  color: #0a66c2 !important;
+  border: 1px solid rgba(10, 102, 194, 0.4) !important;
+  border-radius: 6px !important;
+  padding: 0.3rem 0.75rem !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+}
+
+.navbar__item.linkedin-link .navbar__link:hover {
+  background: rgba(10, 102, 194, 0.12) !important;
+  border-color: #0a66c2 !important;
+}
+
+/* Resume button */
+.navbar__item.resume-link .navbar__link {
+  background: #38bdf8 !important;
+  color: #0f172a !important;
+  border-radius: 6px !important;
+  padding: 0.3rem 0.85rem !important;
+  font-size: 0.83rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+
+.navbar__item.resume-link .navbar__link:hover {
+  background: #7dd3fc !important;
+  color: #0f172a !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* Email link */
+.navbar__item.email-link .navbar__link {
+  color: #94a3b8 !important;
+  font-size: 0.83rem !important;
+}
+
+.navbar__item.email-link .navbar__link:hover {
+  color: #38bdf8 !important;
+}
+
+/* GitHub */
+.navbar__item.github-link .navbar__link {
+  color: #94a3b8 !important;
+}
+
+.navbar__item.github-link .navbar__link:hover {
+  color: #f1f5f9 !important;
+}
+
+/* ── Custom Logo SVG (injected via CSS) ───────────────── */
+.navbar__logo img {
+  display: none;
+}
+
+.navbar__logo::before {
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+  background: #080f1e !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.1) !important;
+}
+
+.footer__title {
+  color: #38bdf8 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+.footer__link-item {
+  color: #64748b !important;
+  font-size: 0.88rem !important;
+}
+
+.footer__link-item:hover {
+  color: #38bdf8 !important;
+}
+
+.footer__copyright {
+  color: #334155 !important;
+  font-size: 0.8rem !important;
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* ── Doc pages ────────────────────────────────────────── */
+[data-theme='dark'] .menu {
+  background: #0f172a !important;
+}
+
+[data-theme='dark'] .menu__link--active {
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+[data-theme='dark'] .table-of-contents__link--active {
+  color: #38bdf8 !important;
 }
