@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_website=globalThis.webpackChunkmy_website||[]).push([[2009],{61942(s){s.exports=JSON.parse('{"name":"@scalar/docusaurus","id":"default"}')}}]);
