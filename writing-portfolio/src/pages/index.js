@@ -24,17 +24,10 @@ const skills = [
 
 const experience = [
   {
-    role: 'Technical Writer',
-    company: 'SumoLogic',
-    via: 'via Check-n-Click Learning & Technologies',
-    period: 'Mar 2023 – Present',
-    current: true,
-  },
-  {
-    role: 'Technical Writer',
-    company: 'nFerence',
+    role: 'Analyst / Software Engineer',
+    company: 'Capgemini',
     via: '',
-    period: 'Jan 2022 – Mar 2023',
+    period: 'Dec 2018 – Jul 2021',
     current: false,
   },
   {
@@ -45,11 +38,18 @@ const experience = [
     current: false,
   },
   {
-    role: 'Analyst / Software Engineer',
-    company: 'Capgemini',
+    role: 'Technical Writer',
+    company: 'nFerence',
     via: '',
-    period: 'Dec 2018 – Jul 2021',
+    period: 'Jan 2022 – Mar 2023',
     current: false,
+  },
+  {
+    role: 'Technical Writer',
+    company: 'SumoLogic',
+    via: 'via Check-n-Click',
+    period: 'Mar 2023 – Present',
+    current: true,
   },
 ];
 
@@ -67,13 +67,15 @@ const portfolio = [
     soon: false,
   },
   {
-    title: 'More Portfolio Pieces',
+    title: 'DX Audit — Stripe, GitHub, Twilio, and SumoLogic',
     description:
-      'Developer Experience guides, Vale linting setups, CI/CD documentation pipelines, and JavaScript-powered MDX components — coming soon as part of my 30-day Documentation Engineer learning journey! 🚀',
-    tags: ['Vale Linting', 'CI/CD', 'MDX Components', 'GEO'],
-    links: [],
-    badge: 'Coming Soon',
-    soon: true,
+      'A structured Developer Experience audit comparing four major API documentation platforms across 6 pillars — Onboarding, Navigation, Code Samples, Error Docs, Consistency, and Trust Signals. Includes actionable improvement proposals for SumoLogic.',
+    tags: ['Developer Experience', 'DX Audit', 'API Docs', 'Documentation Engineering'],
+    links: [
+      { label: '📖 Read Article', to: '/docs/dx-audit' },
+    ],
+    badge: 'Portfolio Piece #2',
+    soon: false,
   },
 ];
 
