@@ -21,10 +21,8 @@ jobs:
           sudo mv vale /usr/local/bin/vale
           vale --version
 
-      - name: Sync Vale styles
-        run: |
-          cp writing-portfolio/.vale.ini .
-          vale sync
-
       - name: Run Vale on docs
-        run: vale --minAlertLevel error writing-portfolio/docs/
+        working-directory: writing-portfolio
+        run: |
+          vale sync
+          vale --minAlertLevel error docs/
