@@ -13,10 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Vale lint
-        uses: errata-ai/vale-action@reviewdog
-        with:
-          files: docs/
-          version: 3.14.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Vale
+        run: |
+          wget https://github.com/errata-ai/vale/releases/download/v3.14.0/vale_3.14.0_Linux_64-bit.tar.gz
+          tar -xvzf vale_3.14.0_Linux_64-bit.tar.gz
+          sudo mv vale /usr/local/bin/vale
+          vale --version
+
+      - name: Sync Vale styles
+        run: vale sync
+
+      - name: Run Vale on docs
+        run: vale --minAlertLevel error docs/
