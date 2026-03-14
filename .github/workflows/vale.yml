@@ -25,4 +25,4 @@ jobs:
         working-directory: writing-portfolio
         run: |
           vale sync
-          vale --minAlertLevel error docs/
+          vale --minAlertLevel warning docs/

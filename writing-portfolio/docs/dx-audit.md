@@ -4,7 +4,7 @@ description: A structured Developer Experience audit comparing four major API do
 tags: [DX, API, Audit, Documentation Engineering]
 ---
 
-As a Documentation Engineer, one of the most valuable skills is the ability to evaluate API documentation not just as a writer, but as a developer. This audit applies a structured Developer Experience (DX) framework to four industry-relevant API documentation sites: Stripe, GitHub, Twilio, and SumoLogic.
+As a Documentation Engineer, one of the most valuable skills is the ability to assess API documentation not just as a writer, but as a developer. This audit applies a structured Developer Experience (DX) framework to four industry-relevant API documentation sites: Stripe, GitHub, Twilio, and SumoLogic.
 
 The goal is to identify what each platform does well, where friction exists, and what actionable improvements can be made.
 
@@ -21,17 +21,17 @@ Despite its reputation, Stripe's error documentation lacks case-specific context
 ### Recommended improvements
 
 - Add endpoint-specific error tables inline within each API reference page.
-- Expand the changelog to show at minimum the last three releases with a summary of changes and a link to full version history.
+- Expand the changelog to show at least the last three releases with a summary of changes and a link to full version history.
 
 ## Audit 2—GitHub
 
 ### What GitHub does right
 
-GitHub's changelog is the best in the industry where each release includes the version number, release date, a clear summary of what changed, and a guide on how to upgrade to the latest version. Code samples are excellent. Consistency across the entire docs site is strong.
+GitHub's changelog is the best in the industry where each release includes the version number, release date, a clear summary of what changed, and a guide on how to upgrade to the latest version. Code samples are strong. Consistency across the entire docs site is strong.
 
 ### Where GitHub falls short
 
-Onboarding is content-heavy. A new developer coming to GitHub Representational State Transfer (REST) API docs for the first time would need to invest 30+ minutes just to get oriented, this significantly increases cognitive load at the most critical stage of the developer journey. Navigation inside guides and reference docs also has a specific gap, that's, the right-side page navigation tree only surfaces H2 headings. Surfacing H3 headings as well would allow developers to jump to specific sub-sections without scrolling through long pages.
+Onboarding is content-heavy. A new developer coming to GitHub Representational State Transfer (REST) API docs for the first time would need to invest 30+ minutes just to get oriented, this increases cognitive load at the most critical stage of the developer journey. Navigation inside guides and reference docs also has a specific gap, that's, the right-side page navigation tree only surfaces H2 headings. Surfacing H3 headings as well would allow developers to jump to specific sub-sections without scrolling through long pages.
 
 ### Recommended improvements
 
@@ -55,7 +55,7 @@ This finding has a direct implication, navigation, and onboarding must be solved
 
 ### Recommended improvements
 
-- Redesign navigation to separate API reference from product guides clearly.
+- Redesign navigation to separate API reference from product guides.
 - Create a dedicated quickstart page with a clear entry point from the homepage.
 - Follow established documentation layout conventions rather than reinventing structure.
 
@@ -64,11 +64,11 @@ This finding has a direct implication, navigation, and onboarding must be solved
 
 ###  What SumoLogic does right
 
-SumoLogic's navigation is the strongest of all four platforms reviewed, earning a 4/5. The decision to open the API reference (Swagger page) in a new tab while keeping the documentation tab intact is a thoughtful UX decision that enables seamless cross-referencing. The quickstart content is clean, minimal, and doesn't overwhelm new developers. Consistency across the docs site is excellent.
+SumoLogic's navigation is the strongest of all four platforms reviewed, earning a 4/5. The decision to open the API reference (Swagger page) in a new tab while keeping the documentation tab intact is a thoughtful UX decision that enables seamless cross-referencing. The quickstart content is clean, minimal, and doesn't overwhelm new developers. Consistency across the docs site is strong.
 
 ###  Where SumoLogic falls short
 
-The most critical gap is Trust Signals scoring 1/5. API release notes exist but are buried inside the general docs release notes rather than being surfaced on the API reference page itself. There is no continuous, structured API changelog. Updates appear random and infrequent, which erodes developer trust in the accuracy of the documentation. Code samples use placeholder dummy data rather than realistic, use-case oriented examples which helps in reducing their practical value. No multi-langauge code support.
+The most critical gap is Trust Signals scoring 1/5. API release notes exist but are buried inside the general docs release notes rather than being surfaced on the API reference page itself. This represents no continuous, structured API changelog. Updates appear random and infrequent, which erodes developer trust in the accuracy of the documentation. Code samples use placeholder dummy data rather than realistic, use-case oriented examples which helps in reducing their practical value. No multi-langauge code support.
 
 ### Recommended improvements
 
@@ -80,7 +80,7 @@ The most critical gap is Trust Signals scoring 1/5. API release notes exist but 
 
 ## Key findings
 
-* **Error documentation is an industry-wide gap**. Across all four platforms, error documentation averaged just 2.75/5. No platform delivers truly excellent, case-specific error documentation at the endpoint level. This represents a significant opportunity for Documentation Engineers who specialise in developer-facing error recovery content.
+* **Error documentation is an industry-wide gap**. Across all four platforms, error documentation averaged just 2.75/5. No platform delivers truly strong, case-specific error documentation at the endpoint level. This represents a significant opportunity for Documentation Engineers who specialise in developer-facing error recovery content.
 
 * **Consistency is universally strong**. All four platforms score 4–5 on consistency, suggesting that style guides and design systems are well established across the industry. The gap isn't in how docs look, it's in how complete and useful they're.
 
@@ -91,3 +91,4 @@ The most critical gap is Trust Signals scoring 1/5. API release notes exist but 
 ## Conclusion
 
 DX auditing is one of the most powerful tools in a Documentation Engineer's toolkit. Following the five pillars: Time to First Hellow World (TTFHW), Discoverability, Cognitive Load, Error Recovery, and Trust & Accuracy it provides a repeatable framework for evaluating any API documentation site and producing specific, prioritised, and actionable recommendations.
+
