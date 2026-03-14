@@ -1,0 +1,22 @@
+name: Vale Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  vale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Vale lint
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          files: docs/
+          version: 3.14.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
