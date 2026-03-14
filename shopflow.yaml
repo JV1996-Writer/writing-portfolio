@@ -1,112 +1,487 @@
 openapi: 3.0.0
 
 info:
-  title: ShopFlow E-commerce API
-  description: APIs to build online stores, manage products, handle orders, and process payments.
+  title: ShopFlow API
   version: 1.0.0
   contact:
-    name: API Support
+    name: ShopFlow API Support
     email: support@shopflow.com
+    url: https://shopflow.com/support
+  description: |
+    ## Overview
+
+    The ShopFlow API is a RESTful API that allows you to build online stores,
+    manage products, handle orders, and process payments programmatically.
+
+    &nbsp;
+
+    ---
+
+    &nbsp;
+
+    ## Getting Started
+
+    In this guide you will make your first ShopFlow API call and retrieve
+    your product catalogue. This takes about **5 minutes.**
+
+    &nbsp;
+
+    ### Step 1 — Prerequisites
+
+    Before you begin, make sure you have the following:
+
+    | Requirement | Details |
+    |---|---|
+    | **ShopFlow account** | Required to generate your API key |
+    | **Node.js 18+** | Required to run the code sample |
+    | **npm or yarn** | Comes bundled with Node.js |
+    | **Terminal** | Terminal on Mac, Command Prompt on Windows |
+
+    Install the ShopFlow SDK:
+
+    ```bash
+    npm install shopflow-sdk
+    ```
+
+    &nbsp;
+
+    ### Step 2 — Get your API key
+
+    1. Sign in to the ShopFlow platform.
+    2. Navigate to **Accounts → Settings → API Keys**.
+    3. Click **Create New Key**.
+    4. Copy and save the generated API key.
+
+    > **Keep your API key secret.**
+      > Never commit it to GitHub or share it publicly.
+      > Use environment variables in production.
+
+    &nbsp;
+
+    ### Step 3 — Make your first API call
+
+    The following example retrieves all products from your ShopFlow catalogue:
+
+    ```javascript
+    // Install the SDK: npm install shopflow-sdk
+    const ShopFlow = require('shopflow-sdk');
+
+    // Initialise with your API key
+    const client = new ShopFlow({
+      apiKey: 'YOUR_API_KEY' // Replace with your actual key
+    });
+
+    // Make your first API call — retrieve all products
+    async function getProducts() {
+      const products = await client.products.list();
+      console.log(products);
+    }
+
+    getProducts();
+    ```
+
+    &nbsp;
+
+    ### Step 4 — View the response
+
+    A successful request returns a JSON object containing your product catalogue:
+
+    ```json
+    {
+      "products": [
+        {
+          "id": "prod_001",
+          "name": "Sony WH-1000XM5 Headphones",
+          "price": 29999,
+          "stock": 45
+        }
+      ],
+      "total": 1
+    }
+    ```
+
+    You authenticated with the ShopFlow API using your API key and retrieved your product catalogue. The response is a JSON object containing an array of products and a total count.
+
+    &nbsp;
+
+    ### Next steps
+
+    Now that you have made your first API call:
+
+    - **Add a new product** — `POST /products`
+    - **Update an existing product** — `PATCH /products/{id}`
+    - **Create an order** — `POST /orders`
+    - **Explore the full reference** — see the endpoints below
+
+    &nbsp;
+
+    ---
+
+    &nbsp;
+
+    ## Authentication
+
+    ShopFlow uses **API key authentication**. Include your API key in the `X-API-Key` header with every request.
+
+    ```bash
+    curl -H "X-API-Key: YOUR_API_KEY" https://api.shopflow.com/v1/products
+    ```
+
+    > **Why API keys?**
+    > ShopFlow uses API keys because they are simple, stateless, and ideal for server-to-server communication. For user-facing applications where your users need their own access, consider using OAuth 2.0 instead.
+
+    &nbsp;
+
+    ---
+
+    &nbsp;
+
+    ## Rate Limits
+
+    | Plan       | Requests per minute | Requests per day |
+    |------------|--------------------:|----------------:|
+    | Free       | 60                  | 1,000           |
+    | Pro        | 300                 | 50,000          |
+    | Enterprise | Unlimited           | Unlimited       |
+
+    When you exceed the rate limit, the API returns a `429 Too Many Requests` response. Use the `Retry-After` header value to know when to retry.
+
+    &nbsp;
+
+    ---
+
+    &nbsp;
+
+    ## Base URL
+
+    ```
+    https://api.shopflow.com/v1
+    ```
+
+    All endpoints are relative to this base URL.
 
 servers:
   - url: https://api.shopflow.com/v1
     description: Production server
   - url: https://sandbox.shopflow.com/v1
-    description: Sandbox for testing
+    description: Sandbox server (for testing — no real transactions)
 
 tags:
   - name: Products
-    description: All product management operations
+    description: |
+      Manage your product catalogue. Use these endpoints to create, retrieve,
+      update, and delete products in your ShopFlow store.
   - name: Orders
-    description: All order management operations
+    description: |
+      Manage customer orders. Use these endpoints to create and retrieve
+      orders placed in your ShopFlow store.
+  - name: Errors
+    description: |
+      ## Error Reference
+
+      ShopFlow uses standard HTTP status codes to indicate the success or
+      failure of an API request.
+
+      ### HTTP Status Codes
+
+      | Code | Status                | When it occurs |
+      |------|-----------------------|----------------|
+      | 200  | OK                    | Request succeeded |
+      | 201  | Created               | Resource created successfully |
+      | 400  | Bad Request           | Invalid parameters or missing required fields |
+      | 401  | Unauthorized          | Missing or invalid API key |
+      | 403  | Forbidden             | Valid API key but insufficient permissions |
+      | 404  | Not Found             | Resource does not exist |
+      | 409  | Conflict              | Resource already exists |
+      | 422  | Unprocessable Entity  | Validation error on request body |
+      | 429  | Too Many Requests     | Rate limit exceeded |
+      | 500  | Internal Server Error | Unexpected server error |
+
+      ### Error Response Format
+
+      All errors follow this consistent format:
+
+      ```json
+      {
+        "error": {
+          "code": "PRODUCT_NOT_FOUND",
+          "message": "The product with ID 'prod_999' does not exist.",
+          "suggestion": "Use GET /products to retrieve valid product IDs.",
+          "docs": "https://api.shopflow.com/errors/PRODUCT_NOT_FOUND"
+        }
+      }
+      ```
+
+      ### Error Code Reference
+
+      | Error Code                  | Status | Cause | Fix |
+      |-----------------------------|--------|-------|-----|
+      | `INVALID_API_KEY`           | 401    | API key is malformed or missing | Check your API key format and header name |
+      | `EXPIRED_API_KEY`           | 401    | API key has been revoked | Generate a new key in Settings → API Keys |
+      | `INSUFFICIENT_PERMISSIONS`  | 403    | API key lacks required scope | Use a key with read/write permissions |
+      | `PRODUCT_NOT_FOUND`         | 404    | Product ID does not exist | Use GET /products to get valid IDs |
+      | `ORDER_NOT_FOUND`           | 404    | Order ID does not exist | Use GET /orders to get valid IDs |
+      | `DUPLICATE_PRODUCT`         | 409    | Product with same SKU exists | Use a unique SKU or update existing product |
+      | `VALIDATION_ERROR`          | 422    | Required field missing or invalid | Check the error details for the specific field |
+      | `RATE_LIMIT_EXCEEDED`       | 429    | Too many requests | Wait for Retry-After duration before retrying |
+      | `INTERNAL_ERROR`            | 500    | Unexpected server error | Retry after a few seconds; contact support if it persists |
+
+      ### Handling Errors in Code
+
+      ```javascript
+      async function getProduct(id) {
+        try {
+          const product = await client.products.get(id);
+          console.log(product);
+        } catch (error) {
+          if (error.status === 404) {
+            console.error('Product not found:', error.code);
+            // Handle gracefully — show user a "not found" message
+          } else if (error.status === 429) {
+            const retryAfter = error.headers['Retry-After'];
+            console.error(`Rate limited. Retry after ${retryAfter} seconds.`);
+          } else {
+            console.error('Unexpected error:', error.message);
+          }
+        }
+      }
+      ```
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: |
+        Generate your API key from **Settings → API Keys** in your ShopFlow dashboard.
+        Include it in the `X-API-Key` header with every request.
+
+  schemas:
+    Product:
+      type: object
+      description: Represents a product in your ShopFlow catalogue.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the product.
+          example: prod_001
+        name:
+          type: string
+          description: Display name of the product.
+          example: Sony WH-1000XM5 Headphones
+        price:
+          type: integer
+          description: Product price in paise (Indian Rupees × 100). For example, ₹299.99 = 29999.
+          example: 29999
+        stock:
+          type: integer
+          description: Number of units currently in stock.
+          example: 45
+        category:
+          type: string
+          description: Product category.
+          enum: [electronics, clothing, books, home, sports]
+          example: electronics
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the product was created.
+          example: '2024-01-15T10:30:00Z'
+
+    NewProduct:
+      type: object
+      description: Request body for creating a new product.
+      required:
+        - name
+        - price
+        - stock
+      properties:
+        name:
+          type: string
+          description: Display name of the product.
+          example: Sony WH-1000XM5 Headphones
+        price:
+          type: integer
+          description: Product price in paise (₹ × 100).
+          example: 29999
+        stock:
+          type: integer
+          description: Initial stock quantity.
+          example: 45
+        category:
+          type: string
+          description: Product category.
+          enum: [electronics, clothing, books, home, sports]
+          example: electronics
+
+    Order:
+      type: object
+      description: Represents a customer order.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the order.
+          example: ord_001
+        productId:
+          type: string
+          description: ID of the product ordered.
+          example: prod_001
+        quantity:
+          type: integer
+          description: Number of units ordered.
+          example: 2
+        status:
+          type: string
+          description: Current status of the order.
+          enum: [pending, confirmed, shipped, delivered, cancelled]
+          example: confirmed
+        totalPrice:
+          type: integer
+          description: Total order price in paise.
+          example: 59998
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the order was placed.
+          example: '2024-01-15T11:00:00Z'
+
+    NewOrder:
+      type: object
+      description: Request body for creating a new order.
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: string
+          description: ID of the product to order.
+          example: prod_001
+        quantity:
+          type: integer
+          description: Number of units to order.
+          example: 2
+
+    Error:
+      type: object
+      description: Standard error response format returned by all ShopFlow API errors.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: PRODUCT_NOT_FOUND
+            message:
+              type: string
+              description: Human-readable description of what went wrong.
+              example: The product with ID 'prod_999' does not exist.
+            suggestion:
+              type: string
+              description: Recommended action to resolve the error.
+              example: Use GET /products to retrieve valid product IDs.
+            docs:
+              type: string
+              description: Link to the relevant error documentation page.
+              example: https://api.shopflow.com/errors/PRODUCT_NOT_FOUND
 
 paths:
   /products:
     get:
-      summary: Get all products
-      description: Returns a paginated list of all products in ShopFlow.
-      operationId: getAllProducts
-      tags:
-        - Products
+      summary: List all products
+      description: |
+        Returns a paginated list of all products in your ShopFlow catalogue.
+        Use the `category` query parameter to filter by product type.
+      operationId: listProducts
+      tags: [Products]
       parameters:
         - name: category
           in: query
-          description: Filter products by category
+          description: Filter products by category.
           required: false
           schema:
             type: string
-            enum:
-              - Electronics
-              - Clothing
-              - Books
-              - Home
-              - Sports
-
-        - name: min_price
-          in: query
-          description: Filter products with price greater than or equal to this value
-          required: false
-          schema:
-            type: number
-
-        - name: max_price
-          in: query
-          description: Filter products with price less than or equal to this value
-          required: false
-          schema:
-            type: number
-
-        - name: sort
-          in: query
-          description: Sort products by selected field
-          required: false
-          schema:
-            type: string
-            enum:
-              - price_asc
-              - price_desc
-              - newest
-              - popular
-            default: newest
-
-        - name: in_stock
-          in: query
-          description: Filter only products currently in stock
-          required: false
-          schema:
-            type: boolean
-            default: true
-
+            enum: [electronics, clothing, books, home, sports]
+            example: electronics
         - name: limit
           in: query
-          description: Maximum number of products to return per page
+          description: Maximum number of products to return. Defaults to 20.
           required: false
           schema:
             type: integer
+            minimum: 1
+            maximum: 100
             default: 20
-
+            example: 20
+        - name: offset
+          in: query
+          description: Number of products to skip for pagination. Defaults to 0.
+          required: false
+          schema:
+            type: integer
+            default: 0
+            example: 0
       responses:
         '200':
-          description: A paginated list of products returned successfully
+          description: Successfully retrieved product list.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
-        '400':
-          description: Bad request — invalid filter parameters
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  total:
+                    type: integer
+                    description: Total number of products matching the query.
+                    example: 1
+              example:
+                products:
+                  - id: prod_001
+                    name: Sony WH-1000XM5 Headphones
+                    price: 29999
+                    stock: 45
+                    category: electronics
+                    createdAt: '2024-01-15T10:30:00Z'
+                total: 1
         '401':
-          description: Unauthorized — API key missing or invalid
-        '500':
-          description: Internal server error
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: INVALID_API_KEY
+                  message: The API key provided is invalid or missing.
+                  suggestion: Check your X-API-Key header value.
+                  docs: https://api.shopflow.com/errors/INVALID_API_KEY
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: RATE_LIMIT_EXCEEDED
+                  message: You have exceeded your rate limit of 60 requests per minute.
+                  suggestion: Wait for the Retry-After duration before retrying.
+                  docs: https://api.shopflow.com/errors/RATE_LIMIT_EXCEEDED
 
     post:
-      summary: Add a new product
-      description: Creates a new product listing in ShopFlow.
+      summary: Create a product
+      description: |
+        Creates a new product in your ShopFlow catalogue.
+        Returns the newly created product object with its assigned ID.
       operationId: createProduct
-      tags:
-        - Products
+      tags: [Products]
       requestBody:
         required: true
         content:
@@ -116,67 +491,103 @@ paths:
             example:
               name: Sony WH-1000XM5 Headphones
               price: 29999
-              currency: INR
-              category: Electronics
-              stock_quantity: 50
-              sku: SONY-WH-XM5-BLK
-              description: Industry leading noise cancelling headphones
-              discount_percentage: 10
+              stock: 45
+              category: electronics
       responses:
         '201':
-          description: Product created successfully
+          description: Product created successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-        '400':
-          description: Bad request — missing or invalid fields
+              example:
+                id: prod_001
+                name: Sony WH-1000XM5 Headphones
+                price: 29999
+                stock: 45
+                category: electronics
+                createdAt: '2024-01-15T10:30:00Z'
         '401':
-          description: Unauthorized — API key missing or invalid
-        '500':
-          description: Internal server error
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error — required field missing or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: VALIDATION_ERROR
+                  message: The 'price' field is required and must be a positive integer.
+                  suggestion: Include a valid price value in your request body.
+                  docs: https://api.shopflow.com/errors/VALIDATION_ERROR
 
   /products/{id}:
     get:
-      summary: Get a product by ID
+      summary: Get a product
       description: Returns a single product by its unique ID.
-      operationId: getProductById
-      tags:
-        - Products
+      operationId: getProduct
+      tags: [Products]
       parameters:
         - name: id
           in: path
           required: true
-          description: The unique ID of the product
+          description: Unique identifier of the product to retrieve.
           schema:
-            type: integer
+            type: string
+            example: prod_001
       responses:
         '200':
-          description: Product found and returned successfully
+          description: Successfully retrieved product.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+              example:
+                id: prod_001
+                name: Sony WH-1000XM5 Headphones
+                price: 29999
+                stock: 45
+                category: electronics
+                createdAt: '2024-01-15T10:30:00Z'
         '401':
-          description: Unauthorized — API key missing or invalid
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
-          description: Product not found
-        '500':
-          description: Internal server error
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: PRODUCT_NOT_FOUND
+                  message: The product with ID 'prod_999' does not exist.
+                  suggestion: Use GET /products to retrieve valid product IDs.
+                  docs: https://api.shopflow.com/errors/PRODUCT_NOT_FOUND
 
     patch:
-      summary: Update a product partially
-      description: Update one or more fields of an existing product.
-      operationId: updateProductById
-      tags:
-        - Products
+      summary: Update a product
+      description: |
+        Updates one or more fields of an existing product.
+        Only include the fields you want to update — all other fields remain unchanged.
+      operationId: updateProduct
+      tags: [Products]
       parameters:
         - name: id
           in: path
           required: true
-          description: The unique ID of the product to update
+          description: Unique identifier of the product to update.
           schema:
-            type: integer
+            type: string
+            example: prod_001
       requestBody:
         required: true
         content:
@@ -185,94 +596,129 @@ paths:
               $ref: '#/components/schemas/NewProduct'
             example:
               price: 24999
-              stock_quantity: 35
-              discount_percentage: 15
+              stock: 30
       responses:
         '200':
-          description: Product updated successfully
+          description: Product updated successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-        '400':
-          description: Bad request — invalid fields sent
+              example:
+                id: prod_001
+                name: Sony WH-1000XM5 Headphones
+                price: 24999
+                stock: 30
+                category: electronics
+                createdAt: '2024-01-15T10:30:00Z'
         '401':
-          description: Unauthorized — API key missing or invalid
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
-          description: Product not found
-        '500':
-          description: Internal server error
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     delete:
-      summary: Delete a product by ID
-      description: Permanently deletes a product from ShopFlow.
-      operationId: deleteProductById
-      tags:
-        - Products
+      summary: Delete a product
+      description: |
+        Permanently deletes a product from your catalogue.
+        This action cannot be undone. Any existing orders for this product are not affected.
+      operationId: deleteProduct
+      tags: [Products]
       parameters:
         - name: id
           in: path
           required: true
-          description: The unique ID of the product to delete
+          description: Unique identifier of the product to delete.
           schema:
-            type: integer
+            type: string
+            example: prod_001
       responses:
-        '200':
-          description: Product deleted successfully
+        '204':
+          description: Product deleted successfully. No content returned.
         '401':
-          description: Unauthorized — API key missing or invalid
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
-          description: Product not found
-        '500':
-          description: Internal server error
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /orders:
     get:
-      summary: Get all orders
-      description: Returns a paginated list of all orders in ShopFlow.
-      operationId: getAllOrders
-      tags:
-        - Orders
+      summary: List all orders
+      description: |
+        Returns a paginated list of all orders placed in your ShopFlow store.
+        Use the `status` parameter to filter by order status.
+      operationId: listOrders
+      tags: [Orders]
       parameters:
         - name: status
           in: query
-          description: Filter orders by current status
+          description: Filter orders by status.
           required: false
           schema:
             type: string
-            enum:
-              - pending
-              - confirmed
-              - shipped
-              - delivered
-              - cancelled
+            enum: [pending, confirmed, shipped, delivered, cancelled]
+            example: confirmed
         - name: limit
           in: query
-          description: Maximum number of orders to return
+          description: Maximum number of orders to return. Defaults to 20.
           required: false
           schema:
             type: integer
             default: 20
+            example: 20
       responses:
         '200':
-          description: A list of orders returned successfully
+          description: Successfully retrieved order list.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Order'
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  total:
+                    type: integer
+                    example: 1
+              example:
+                orders:
+                  - id: ord_001
+                    productId: prod_001
+                    quantity: 2
+                    status: confirmed
+                    totalPrice: 59998
+                    createdAt: '2024-01-15T11:00:00Z'
+                total: 1
         '401':
-          description: Unauthorized — API key missing or invalid
-        '500':
-          description: Internal server error
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     post:
-      summary: Place a new order
-      description: Creates a new order in ShopFlow.
+      summary: Create an order
+      description: |
+        Creates a new order for a product in your ShopFlow store.
+        The total price is automatically calculated based on the product price and quantity.
+        Stock is automatically decremented when an order is created.
       operationId: createOrder
-      tags:
-        - Orders
+      tags: [Orders]
       requestBody:
         required: true
         content:
@@ -280,210 +726,43 @@ paths:
             schema:
               $ref: '#/components/schemas/NewOrder'
             example:
-              customer_name: Jagadisha V
-              customer_email: jagadish_dummy@email.com
-              product_id: 42
+              productId: prod_001
               quantity: 2
       responses:
         '201':
-          description: Order placed successfully
+          description: Order created successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
-        '400':
-          description: Bad request — missing fields or product out of stock
+              example:
+                id: ord_001
+                productId: prod_001
+                quantity: 2
+                status: confirmed
+                totalPrice: 59998
+                createdAt: '2024-01-15T11:00:00Z'
         '401':
-          description: Unauthorized — API key missing or invalid
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
-          description: Product not found
-        '500':
-          description: Internal server error
-
-components:
-  schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the product
-          example: 42
-        name:
-          type: string
-          description: Name of the product
-          example: Sony WH-1000XM5 Headphones
-        description:
-          type: string
-          description: Detailed description of the product
-          example: Industry leading noise cancelling headphones
-        price:
-          type: number
-          format: float
-          description: Price of the product
-          example: 29999
-        currency:
-          type: string
-          description: Currency of the price
-          example: INR
-        category:
-          type: string
-          description: Product category
-          example: Electronics
-        stock_quantity:
-          type: integer
-          description: Number of units available in stock
-          example: 50
-        sku:
-          type: string
-          description: Unique product identifier for inventory
-          example: SONY-WH-XM5-BLK
-        discount_percentage:
-          type: number
-          description: Discount percentage applied to the product
-          example: 10
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the product was created
-          example: "2026-03-01T10:00:00Z"
-
-    NewProduct:
-      type: object
-      required:
-        - name
-        - price
-        - category
-        - stock_quantity
-        - sku
-      properties:
-        name:
-          type: string
-          minLength: 3
-          maxLength: 200
-          description: Name of the product
-          example: Sony WH-1000XM5 Headphones
-        price:
-          type: number
-          format: float
-          minimum: 0
-          description: Price of the product
-          example: 29999
-        currency:
-          type: string
-          default: INR
-          enum:
-            - INR
-            - USD
-            - EUR
-            - GBP
-          description: Currency of the price
-        category:
-          type: string
-          enum:
-            - Electronics
-            - Clothing
-            - Books
-            - Home
-            - Sports
-          description: Product category
-        stock_quantity:
-          type: integer
-          minimum: 0
-          description: Number of units available in stock
-          example: 50
-        sku:
-          type: string
-          description: Unique product identifier for inventory
-          example: SONY-WH-XM5-BLK
-        description:
-          type: string
-          description: Detailed description of the product
-          example: Industry leading noise cancelling headphones
-        discount_percentage:
-          type: number
-          minimum: 0
-          maximum: 100
-          default: 0
-          description: Discount percentage between 0 and 100
-
-    Order:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the order
-          example: 101
-        customer_name:
-          type: string
-          description: Full name of the customer
-          example: Jagadisha V
-        customer_email:
-          type: string
-          format: email
-          description: Email address of the customer
-          example: jagadish_dummy@email.com
-        product_id:
-          type: integer
-          description: ID of the ordered product
-          example: 42
-        quantity:
-          type: integer
-          description: Number of units ordered
-          example: 2
-        total_price:
-          type: number
-          description: Total price of the order
-          example: 59998
-        status:
-          type: string
-          enum:
-            - pending
-            - confirmed
-            - shipped
-            - delivered
-            - cancelled
-          description: Current status of the order
-          example: confirmed
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the order was placed
-          example: "2026-03-01T12:00:00Z"
-
-    NewOrder:
-      type: object
-      required:
-        - customer_name
-        - customer_email
-        - product_id
-        - quantity
-      properties:
-        customer_name:
-          type: string
-          description: Full name of the customer
-          example: Arjun Kumar
-        customer_email:
-          type: string
-          format: email
-          description: Email address of the customer
-          example: arjun@email.com
-        product_id:
-          type: integer
-          description: ID of the product to order
-          example: 42
-        quantity:
-          type: integer
-          minimum: 1
-          description: Number of units to order — minimum 1
-          example: 2
-
-  securitySchemes:
-    apiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
-      description: API key for authentication — include in every request header
-
-security:
-  - apiKeyAuth: []
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error — insufficient stock or invalid quantity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: VALIDATION_ERROR
+                  message: Insufficient stock. Only 1 unit available for product 'prod_001'.
+                  suggestion: Reduce the quantity or check stock using GET /products/prod_001.
+                  docs: https://api.shopflow.com/errors/VALIDATION_ERROR
