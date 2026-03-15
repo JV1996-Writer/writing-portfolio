@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Docs Portfolio',
   tagline: 'Senior Technical Writer | Documentation Engineer',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo-jv.png',
 
   future: {
     v4: true,
