@@ -134,6 +134,10 @@ presets: [
           position: 'left'
         },
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+        },
+        {
           href: 'mailto:jagadishv333@gmail.com',
           label: 'Email',
           position: 'right',

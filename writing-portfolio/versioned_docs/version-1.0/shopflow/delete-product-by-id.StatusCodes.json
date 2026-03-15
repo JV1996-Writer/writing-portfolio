@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Product deleted successfully"},"401":{"description":"Unauthorized — API key missing or invalid"},"404":{"description":"Product not found"},"500":{"description":"Internal server error"}}}

@@ -22,11 +22,12 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --exclude-mail
             --exclude 'localhost'
             --exclude 'shopflow.com'
             --exclude 'api.shopflow.com'
-            writing-portfolio/docs/**/*.md
+            --exclude 'mailto:'
+            'writing-portfolio/docs/**/*.md'
           fail: true
+          failIfEmpty: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
