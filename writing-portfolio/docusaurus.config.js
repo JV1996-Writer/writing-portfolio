@@ -100,6 +100,10 @@ presets: [
       },
       navbar: {
         title: 'JV Portfolio',
+        logo:{
+          alt:'JV Portfoli Logo',
+          src: 'img/logo.svg'
+        },
         style: 'dark',
         items: [
         {
