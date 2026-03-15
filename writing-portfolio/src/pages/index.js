@@ -67,7 +67,7 @@ const portfolio = [
     soon: false,
   },
   {
-    title: 'DX Audit — Stripe, GitHub, Twilio, and SumoLogic',
+    title: 'DX Audit — Stripe, GitHub, Twilio & SumoLogic',
     description:
       'A structured Developer Experience audit comparing four major API documentation platforms across 6 pillars — Onboarding, Navigation, Code Samples, Error Docs, Consistency, and Trust Signals. Includes actionable improvement proposals for SumoLogic.',
     tags: ['Developer Experience', 'DX Audit', 'API Docs', 'Documentation Engineering'],
@@ -104,27 +104,40 @@ function HeroBanner() {
           </div>
         </div>
         <div className={styles.heroVisual}>
-          <div className={styles.codeCard}>
-            <div className={styles.codeCardHeader}>
-              <span className={styles.dot} style={{ background: '#ff5f57' }} />
-              <span className={styles.dot} style={{ background: '#febc2e' }} />
-              <span className={styles.dot} style={{ background: '#28c840' }} />
-              <span className={styles.codeCardTitle}>shopflow.yaml</span>
+          <div className={styles.floatingCards}>
+            <div className={styles.floatCard} style={{ animationDelay: '0s' }}>
+              <div className={styles.floatCardIcon}>
+                <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="16" fill="#49A84C"/>
+                  <path d="M8 16.5c0-1.1.4-2 1.1-2.7.7-.7 1.6-1 2.7-1h.8v1.6h-.8c-.7 0-1.2.2-1.6.7-.4.4-.6 1-.6 1.7v.8c0 .9-.3 1.6-.8 2.1-.5.5-1.2.8-2 .9v.1c.8.1 1.5.4 2 .9.5.5.8 1.2.8 2.1v.8c0 .7.2 1.2.6 1.7.4.4.9.7 1.6.7h.8V28h-.8c-1.1 0-2-.4-2.7-1.1C8.4 26.2 8 25.3 8 24.2v-.8c0-.7-.2-1.2-.5-1.6-.3-.4-.8-.6-1.5-.6V19.6c.7 0 1.2-.2 1.5-.6.3-.4.5-.9.5-1.6v-.9zm16 0v.8c0 .7.2 1.2.5 1.6.3.4.8.6 1.5.6v1.6c-.7 0-1.2.2-1.5.6-.3.4-.5.9-.5 1.6v.8c0 1.1-.4 2-1.1 2.7-.7.7-1.6 1.1-2.7 1.1h-.8v-1.6h.8c.7 0 1.2-.2 1.6-.7.4-.4.6-1 .6-1.7v-.8c0-.9.3-1.6.8-2.1.5-.5 1.2-.8 2-.9v-.1c-.8-.1-1.5-.4-2-.9-.5-.5-.8-1.2-.8-2.1v-.8c0-.7-.2-1.2-.6-1.7-.4-.4-.9-.7-1.6-.7h-.8V13h.8c1.1 0 2 .4 2.7 1.1.7.6 1.1 1.5 1.1 2.6z" fill="white"/>
+                </svg>
+              </div>
+              <div className={styles.floatCardContent}>
+                <div className={styles.floatCardTitle}>API Documentation</div>
+                <div className={styles.floatCardDesc}>OpenAPI 3.0 · Scalar · Redoc</div>
+              </div>
             </div>
-            <pre className={styles.codeBlock}>{`openapi: 3.0.0
-info:
-  title: ShopFlow API
-  version: 1.0.0
-
-paths:
-  /products:
-    get:
-      summary: Get all products
-      tags: [Products]
-      responses:
-        '200':
-          description: Success ✓`}
-            </pre>
+            <div className={styles.floatCard} style={{ animationDelay: '0.2s' }}>
+              <div className={styles.floatCardIcon} style={{ color: '#6366f1' }}>DX</div>
+              <div className={styles.floatCardContent}>
+                <div className={styles.floatCardTitle}>Developer Experience</div>
+                <div className={styles.floatCardDesc}>Audits · Diátaxis · Vale Linting</div>
+              </div>
+            </div>
+            <div className={styles.floatCard} style={{ animationDelay: '0.4s' }}>
+              <div className={styles.floatCardIcon} style={{ color: '#10b981' }}>&lt;/&gt;</div>
+              <div className={styles.floatCardContent}>
+                <div className={styles.floatCardTitle}>Docs as Code</div>
+                <div className={styles.floatCardDesc}>CI/CD · GitHub Actions · MDX</div>
+              </div>
+            </div>
+            <div className={styles.floatCard} style={{ animationDelay: '0.6s' }}>
+              <div className={styles.floatCardIcon} style={{ color: '#f59e0b' }}>☕</div>
+              <div className={styles.floatCardContent}>
+                <div className={styles.floatCardTitle}>Java & JavaScript</div>
+                <div className={styles.floatCardDesc}>JS for Docs · SDK Docs · Guides</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
