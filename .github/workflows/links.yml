@@ -22,10 +22,10 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --exclude-mail
             --exclude 'localhost'
             --exclude 'shopflow.com'
             --exclude 'api.shopflow.com'
+            --exclude 'mailto:'
             writing-portfolio/docs/**/*.md
           fail: true
         env:
