@@ -158,19 +158,14 @@
 
 /* ── Custom Logo SVG (injected via CSS) ───────────────── */
 .navbar__logo img {
-  display: none;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
 }
 
 .navbar__logo::before {
-  content: '';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
-  border-radius: 8px;
-  font-size: 1rem;
+  display: none;
 }
 
 /* ── Footer ───────────────────────────────────────────── */
