@@ -102,7 +102,7 @@ presets: [
         title: 'JV Portfolio',
         logo:{
           alt:'JV Portfoli Logo',
-          src: 'img/logo-jv.svg'
+          src: 'img/logo-jv.png'
         },
         style: 'dark',
         items: [
