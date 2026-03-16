@@ -129,11 +129,6 @@ presets: [
           ],
         },
         {
-          to: '/blog', 
-          label: 'Blog', 
-          position: 'left'
-        },
-        {
           type: 'docsVersionDropdown',
           position: 'right',
         },
