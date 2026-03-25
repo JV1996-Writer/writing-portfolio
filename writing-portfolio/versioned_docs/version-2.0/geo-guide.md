@@ -107,7 +107,7 @@ GEO style:
 ### Principle 2 — One page, one question
 
 Each documentation page should answer one clear question completely. Avoid combining multiple concepts on a single page.
-```
+```Example
 "API Reference" — everything on one giant page
 "How to authenticate with the API"
 "How to handle rate limiting"
