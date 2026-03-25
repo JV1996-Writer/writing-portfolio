@@ -184,7 +184,7 @@ Rewrite headings as questions developers actually ask. Change "Authentication" t
 ### Why do self-contained answers improve AI citation?
 AI models cannot follow cross-references or links between pages. Self-contained answers provide everything needed in one place, making it possible for AI to cite the content without requiring additional context.
 
-## How do I add FAQ schema markup to Docusaurus?
+### How do I add FAQ schema markup to Docusaurus?
 
 Add a `head` block to your page frontmatter with a JSON-LD script tag:
 ```
@@ -211,7 +211,7 @@ head:
 
 This adds invisible structured data to your page that AI crawlers read without affecting how the page looks to human readers.
 
-## How do I test if my documentation is being cited by AI?
+### How do I test if my documentation is being cited by AI?
 
 Search for your content on AI-powered search engines:
 
