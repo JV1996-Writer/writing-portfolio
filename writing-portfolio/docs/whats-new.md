@@ -1,6 +1,7 @@
 ---
-title: What's new in v2.0
-description: New features and improvements in ShopFlow API v2.0
+title: What's new in ShopFlow API v2.0
+description: ShopFlow API v2.0 introduces new endpoints for featured products and bulk orders, improved response times, better error messages, and new SDK support for Swift and Kotlin.
+keywords: [ShopFlow API, v2.0, changelog, new features, API updates]
 ---
 
 ## What's new in ShopFlow API v2.0
@@ -8,7 +9,7 @@ description: New features and improvements in ShopFlow API v2.0
 ### New endpoints
 
 - `GET /products/featured`. Retrieve featured products.
-- `POST /orders/bulk`. Create multiple orders in one request.
+- `POST /orders/bulk`. Create more than one orders in a single request.
 
 ### Improvements
 
