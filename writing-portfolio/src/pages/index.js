@@ -70,11 +70,22 @@ const portfolio = [
     title: 'DX Audit — Stripe, GitHub, Twilio & SumoLogic',
     description:
       'A structured Developer Experience audit comparing four major API documentation platforms across 6 pillars — Onboarding, Navigation, Code Samples, Error Docs, Consistency, and Trust Signals. Includes actionable improvement proposals for SumoLogic.',
-    tags: ['Developer Experience', 'DX Audit', 'API Docs', 'Documentation Engineering'],
+    tags: ['Developer Experience', 'DX Audit', 'API Docs'],
     links: [
       { label: '📖 Read Article', to: '/docs/dx-audit' },
     ],
     badge: 'Portfolio Piece #2',
+    soon: false,
+  },
+    {
+    title: 'GEO Guide — Optimising Documentation for AI Citation',
+    description:
+      'Learn how to optimise your API documentation for AI citation using Generative Engine Optimisation (GEO) principles. Covers BLUF writing, FAQ schema, question-style headings, and structured metadata.',
+    tags: ['GEO', 'AI', 'SEO', 'Documentation Engineering'],
+    links: [
+      { label: '📖 Read Article', to: '/docs/geo-guide' },
+    ],
+    badge: 'Portfolio Piece #3',
     soon: false,
   },
 ];
@@ -98,7 +109,7 @@ function HeroBanner() {
             <Link className={styles.btnPrimary} to="/api">
               View ShopFlow API Docs
             </Link>
-            <Link className={styles.btnSecondary} to="/docs/intro">
+            <Link className={styles.btnSecondary} to="/docs/dx-audit">
               Browse Portfolio
             </Link>
           </div>

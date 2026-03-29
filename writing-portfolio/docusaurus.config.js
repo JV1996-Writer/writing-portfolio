@@ -107,10 +107,19 @@ presets: [
         style: 'dark',
         items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
+          type: 'dropdown',
           label: 'Docs',
+          position: 'left',
+          items: [
+            {
+              label: 'DX Audit',
+              to: '/docs/dx-audit',
+            },
+            {
+              label: 'GEO',
+              to: '/docs/GEO-guide',
+            },
+          ],
         },
         // ✅ Dropdown menu replacing the two separate links
         {
@@ -149,13 +158,6 @@ presets: [
           label: 'GitHub',
           position: 'right',
           className: 'github-link',
-        },
-        {
-      // ✅ Resume download — upload your PDF to static/resume.pdf
-          href: '/writing-portfolio/resume.pdf',
-          label: '⬇ Resume',
-          position: 'right',
-          className: 'resume-link',
         },
       ],
       },
