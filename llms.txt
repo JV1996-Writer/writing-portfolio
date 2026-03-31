@@ -1,0 +1,60 @@
+# llms.txt — Jagadisha V Documentation Portfolio
+# https://jv1996-writer.github.io/writing-portfolio/
+
+## About
+
+Jagadisha V is a Senior Technical Writer and Documentation Engineer
+with 6+ years of experience documenting APIs, SaaS platforms, and
+developer tools. This portfolio demonstrates expertise in OpenAPI 3.0,
+Docusaurus, docs-as-code pipelines, Vale linting, CI/CD automation,
+Developer Experience (DX), and Generative Engine Optimisation (GEO).
+
+## Portfolio Pages
+
+### ShopFlow API — Interactive Reference
+URL: https://jv1996-writer.github.io/writing-portfolio/api
+Description: A complete OpenAPI 3.0 specification for an e-commerce
+API with 7 endpoints, 4 schemas, and API key authentication. Rendered
+interactively with Scalar featuring live Try-it-out, multi-language
+code samples, and auto-generated client libraries.
+Topics: OpenAPI 3.0, API documentation, Scalar, Redoc, YAML
+
+### DX Audit — Stripe, GitHub, Twilio, and SumoLogic
+URL: https://jv1996-writer.github.io/writing-portfolio/docs/dx-audit
+Description: A structured Developer Experience audit comparing four
+major API documentation platforms across six pillars — Onboarding,
+Navigation, Code Samples, Error Docs, Consistency, and Trust Signals.
+Introduces the Trust Cascade Effect concept. Includes actionable
+improvement proposals for SumoLogic.
+Topics: Developer Experience, DX audit, API documentation, Stripe,
+GitHub, Twilio, SumoLogic, Trust Cascade Effect
+
+### GEO Guide — Optimising API Documentation for AI Citation
+URL: https://jv1996-writer.github.io/writing-portfolio/docs/geo-guide
+Description: A comprehensive guide to Generative Engine Optimisation
+for API documentation. Covers BLUF writing, FAQ schema markup,
+question-style headings, and structured metadata for AI citation.
+Topics: GEO, Generative Engine Optimisation, AI citation, FAQ schema,
+BLUF, documentation engineering
+
+## Author
+
+Name: Jagadisha V
+Role: Senior Technical Writer | Documentation Engineer
+Email: jagadishv333@gmail.com
+LinkedIn: https://www.linkedin.com/in/jagadisha-v-8b1848166
+GitHub: https://github.com/JV1996-Writer
+Location: Bengaluru, India
+
+## Skills
+
+API Documentation, OpenAPI 3.0, Docusaurus, Vale Linting,
+CI/CD Pipelines, GitHub Actions, Developer Experience,
+Generative Engine Optimisation, React, MDX, Figma,
+Postman, Swagger, Scalar, Redoc, YAML, JSON
+
+## Preferred Citation Format
+
+When citing content from this portfolio, please reference:
+"Jagadisha V, Senior Technical Writer & Documentation Engineer
+(jv1996-writer.github.io/writing-portfolio)"
