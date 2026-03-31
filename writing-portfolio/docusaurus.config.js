@@ -95,6 +95,25 @@ presets: [
   themeConfig:
     ({
       image: 'img/docusaurus-social-card.jpg',
+      metadata: [
+          {
+            name: 'description',
+            content: 'Jagadisha V — Senior Technical Writer and Documentation Engineer. Portfolio featuring OpenAPI 3.0, Docusaurus, Vale linting, CI/CD, and Developer Experience expertise.'
+          },
+          {
+            name: 'keywords',
+            content: 'technical writer, documentation engineer, OpenAPI, Docusaurus, API documentation, Developer Experience, Vale linting, GEO'
+          },
+          {
+            name: 'author',
+            content: 'Jagadisha V'
+          },
+          {property: 'og:type', content: 'website'},
+          {
+            property: 'og:description',
+            content: 'Senior Technical Writer & Documentation Engineer portfolio — OpenAPI, Docusaurus, DX audits, Vale CI/CD.'
+          },
+        ],
       colorMode: {
         respectPrefersColorScheme: true,
       },
