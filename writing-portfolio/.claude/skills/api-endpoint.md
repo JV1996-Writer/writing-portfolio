@@ -1,9 +1,11 @@
+---
+name: api-endpoint
+description: Use when documenting an API endpoint. Trigger phrases "document this endpoint", "write endpoint doc", "create API reference for", "document the POST/GET/PUT/DELETE endpoint", "add endpoint documentation". Always include curl + JavaScript examples, request body table, success response, per-endpoint error table, BLUF opening, and FAQ section. Follow CLAUDE.md style rules throughout.
+---
+
 # API endpoint documentation skill
 
 Use this skill when asked to document an API endpoint. Follow every rule below without exception.
-
----
-
 ## Output structure
 
 Produce the endpoint doc in this exact order:
@@ -27,7 +29,6 @@ The very first sentence after the title must state what the endpoint does and wh
 **Example:**
 > The POST /orders endpoint creates a new order and returns the order ID with an estimated fulfillment date.
 
----
 
 ### 3. Request details
 
@@ -80,7 +81,6 @@ const response = await fetch('https://api.example.com/v1/orders', {
 const data = await response.json();
 ```
 
----
 
 ### 4. Success response
 
@@ -97,7 +97,6 @@ Always show the HTTP status code and a complete example JSON body. Use realistic
 }
 ```
 
----
 
 ### 5. Error table
 
@@ -110,7 +109,6 @@ List only the errors that this specific endpoint can return. Do not paste a gene
 | `404` | `CUSTOMER_NOT_FOUND` | No customer exists with the supplied `customerId`. | Check the ID against the customers endpoint. |
 | `422` | `INSUFFICIENT_STOCK` | Requested quantity exceeds available stock. | Reduce quantity or split the order. |
 
----
 
 ### 6. FAQ section (required)
 
@@ -128,9 +126,7 @@ No. The endpoint rejects the entire order if any item is out of stock. Submit se
 The endpoint is idempotent when you pass the same `idempotencyKey`. Retry the request with the same key; a duplicate order will not be created.
 ```
 
----
-
-## Style rules (enforced by CLAUDE.md)
+## Gotchas
 
 - Sentence case for all headings.
 - Active voice throughout. Rewrite any passive construction before saving.
@@ -139,7 +135,6 @@ The endpoint is idempotent when you pass the same `idempotencyKey`. Retry the re
 - No space before or after a dash inside compound modifiers. If you need an aside, use a comma instead of an em dash.
 - BLUF first: conclusion before background, always.
 
----
 
 ## Checklist before saving
 
