@@ -10,6 +10,7 @@ const skills = [
   { name: 'Docusaurus', icon: '🦕' },
   { name: 'Markdown / MDX', icon: '✍️' },
   { name: 'Swagger / Scalar', icon: '⚡' },
+  { name: 'Claude Code', icon: '🤖' },
   { name: 'GitHub & Git', icon: '🐙' },
   { name: 'Ahrefs & SEO', icon: '📈' },
   { name: 'REST API Docs', icon: '🔗' },
@@ -86,6 +87,17 @@ const portfolio = [
       { label: '📖 Read Article', to: '/docs/geo-guide' },
     ],
     badge: 'Portfolio Piece #3',
+    soon: false,
+  },
+  {
+    title: 'ShopFlow API — Release Notes',
+    description:
+      'Versioned release notes for the ShopFlow API. Covers new endpoints, performance improvements, and breaking changes that is written to help developers integrate updates quickly.',
+    tags: ['Release Notes', 'Changelog', 'API Updates'],
+    links: [
+      { label: '📋 View Release Notes', to: '/release-notes' },
+    ],
+    badge: 'Portfolio Piece #4',
     soon: false,
   },
 ];
@@ -249,9 +261,6 @@ function ContactSection() {
     <section className={styles.contact}>
       <div className="container">
         <Heading as="h2" className={styles.contactTitle}>Let's Work Together</Heading>
-        <p className={styles.contactSub}>
-          Open to Documentation Engineer and Senior Technical Writer roles — remote or hybrid.
-        </p>
         <div className={styles.heroButtons}>
           <a
             className={styles.btnPrimary}
