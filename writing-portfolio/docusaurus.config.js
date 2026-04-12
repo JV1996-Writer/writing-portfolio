@@ -77,6 +77,15 @@ presets: [
 
   plugins: [
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'release-notes',
+        path: 'release-notes',
+        routeBasePath: 'release-notes',
+        sidebarPath: './sidebars-release-notes.js',
+      },
+    ],
+    [
       '@scalar/docusaurus',
       {
         route: '/api',
@@ -155,6 +164,11 @@ presets: [
               to: '/api-reference',
             },
           ],
+        },
+        {
+          to: '/release-notes',
+          label: 'Release Notes',
+          position: 'left',
         },
         {
           type: 'docsVersionDropdown',

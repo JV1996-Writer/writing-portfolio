@@ -213,6 +213,50 @@
   background: #38bdf8;
 }
 
+/* ── Release Notes Cards ──────────────────────────────── */
+.rn-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.rn-card {
+  display: block;
+  text-decoration: none !important;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  background: var(--ifm-background-surface-color, #fff);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rn-card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none !important;
+}
+
+.rn-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  margin: 0 0 0.25rem;
+}
+
+.rn-card__meta {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 0.6rem;
+}
+
+.rn-card__desc {
+  font-size: 0.88rem;
+  color: var(--ifm-font-color-base);
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* ── Doc pages ────────────────────────────────────────── */
 [data-theme='dark'] .menu {
   background: #0f172a !important;
